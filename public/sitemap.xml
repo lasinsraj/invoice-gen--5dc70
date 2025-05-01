@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset
       xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -5,9 +6,32 @@
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
+  <url>
+    <loc>https://invoicegenerator.com/</loc>
+    <lastmod>2025-05-01T10:00:00+00:00</lastmod>
+    <priority>1.0</priority>
+    <changefreq>weekly</changefreq>
+  </url>
 
+  <url>
+    <loc>https://invoicegenerator.com/invoice</loc>
+    <lastmod>2025-05-01T10:00:00+00:00</lastmod>
+    <priority>1.0</priority>
+    <changefreq>weekly</changefreq>
+  </url>
 
+  <url>
+    <loc>https://invoicegenerator.com/about</loc>
+    <lastmod>2025-05-01T10:00:00+00:00</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
 
-
+  <url>
+    <loc>https://invoicegenerator.com/contact</loc>
+    <lastmod>2025-05-01T10:00:00+00:00</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
 
 </urlset>
