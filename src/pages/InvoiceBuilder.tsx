@@ -1,11 +1,10 @@
-
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import InvoiceForm from '@/components/InvoiceForm';
+import InvoiceForm from '@/components/invoice/InvoiceForm';
 import InvoicePreview from '@/components/InvoicePreview';
 import AdBanner from '@/components/AdBanner';
 import { InvoiceData, defaultInvoice } from '@/types/invoice';
