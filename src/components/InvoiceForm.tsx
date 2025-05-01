@@ -19,6 +19,8 @@ interface InvoiceFormProps {
   onInvoiceUpdate: (invoice: InvoiceData) => void;
 }
 
+type AllowedFields = keyof InvoiceData | 'billFrom' | 'billTo';
+
 const InvoiceForm: React.FC<InvoiceFormProps> = ({ onInvoiceUpdate }) => {
   const [invoice, setInvoice] = useState<InvoiceData>(defaultInvoice);
 
@@ -83,7 +85,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ onInvoiceUpdate }) => {
   };
 
   // Handle general form changes
-  const handleChange = (section: keyof InvoiceData, field: string, value: string | number) => {
+  const handleChange = (section: AllowedFields, field: string, value: string | number) => {
     if (section === 'billFrom' || section === 'billTo') {
       setInvoice(prev => ({
         ...prev,
@@ -92,7 +94,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ onInvoiceUpdate }) => {
     } else {
       setInvoice(prev => ({
         ...prev,
-        [field]: value
+        [field as keyof InvoiceData]: value
       }));
     }
   };
@@ -151,7 +153,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ onInvoiceUpdate }) => {
                 <Input
                   id="invoiceNumber"
                   value={invoice.invoiceNumber}
-                  onChange={(e) => handleChange('', 'invoiceNumber', e.target.value)}
+                  onChange={(e) => handleChange('invoiceNumber' as keyof InvoiceData, 'invoiceNumber', e.target.value)}
                   placeholder="INV-0001"
                   className="flex-1"
                 />
@@ -168,7 +170,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ onInvoiceUpdate }) => {
                   id="issueDate"
                   type="date"
                   value={invoice.issueDate}
-                  onChange={(e) => handleChange('', 'issueDate', e.target.value)}
+                  onChange={(e) => handleChange('issueDate' as keyof InvoiceData, 'issueDate', e.target.value)}
                 />
               </div>
               <div>
@@ -177,7 +179,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ onInvoiceUpdate }) => {
                   id="dueDate"
                   type="date"
                   value={invoice.dueDate}
-                  onChange={(e) => handleChange('', 'dueDate', e.target.value)}
+                  onChange={(e) => handleChange('dueDate' as keyof InvoiceData, 'dueDate', e.target.value)}
                 />
               </div>
             </div>
@@ -384,7 +386,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ onInvoiceUpdate }) => {
                   <Input
                     id="notes"
                     value={invoice.notes}
-                    onChange={(e) => handleChange('', 'notes', e.target.value)}
+                    onChange={(e) => handleChange('notes' as keyof InvoiceData, 'notes', e.target.value)}
                     placeholder="Notes - any relevant information not already covered"
                   />
                 </div>
@@ -394,7 +396,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ onInvoiceUpdate }) => {
                   <Input
                     id="terms"
                     value={invoice.terms}
-                    onChange={(e) => handleChange('', 'terms', e.target.value)}
+                    onChange={(e) => handleChange('terms' as keyof InvoiceData, 'terms', e.target.value)}
                     placeholder="Terms and conditions"
                   />
                 </div>
@@ -407,7 +409,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ onInvoiceUpdate }) => {
                   <Label>Currency</Label>
                   <select
                     value={invoice.currency}
-                    onChange={(e) => handleChange('', 'currency', e.target.value)}
+                    onChange={(e) => handleChange('currency' as keyof InvoiceData, 'currency', e.target.value)}
                     className="border rounded p-2"
                   >
                     <option value="USD">USD ($)</option>
@@ -427,7 +429,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ onInvoiceUpdate }) => {
                     min="0"
                     max="100"
                     value={invoice.taxRate}
-                    onChange={(e) => handleChange('', 'taxRate', parseFloat(e.target.value) || 0)}
+                    onChange={(e) => handleChange('taxRate' as keyof InvoiceData, 'taxRate', parseFloat(e.target.value) || 0)}
                     className="w-24 text-right"
                   />
                 </div>
@@ -440,7 +442,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ onInvoiceUpdate }) => {
                     min="0"
                     max="100"
                     value={invoice.discountRate}
-                    onChange={(e) => handleChange('', 'discountRate', parseFloat(e.target.value) || 0)}
+                    onChange={(e) => handleChange('discountRate' as keyof InvoiceData, 'discountRate', parseFloat(e.target.value) || 0)}
                     className="w-24 text-right"
                   />
                 </div>
