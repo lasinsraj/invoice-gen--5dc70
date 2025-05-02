@@ -14,8 +14,19 @@ const NotFound = () => {
       location.pathname
     );
     
-    // Add page title for SEO
+    // Add page title and meta tags for SEO
     document.title = "404 - Page Not Found | Invoice Generator";
+    
+    // Add meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'The page you are looking for does not exist. Return to our free invoice generator tool to create professional invoices online.');
+    } else {
+      const newMeta = document.createElement('meta');
+      newMeta.name = 'description';
+      newMeta.content = 'The page you are looking for does not exist. Return to our free invoice generator tool to create professional invoices online.';
+      document.head.appendChild(newMeta);
+    }
   }, [location.pathname]);
 
   return (
