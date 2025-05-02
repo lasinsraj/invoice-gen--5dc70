@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { Home, FileText } from "lucide-react";
 
 const NotFound = () => {
   const location = useLocation();
@@ -41,11 +42,17 @@ const NotFound = () => {
             Sorry, we couldn't find the page you're looking for. It might have been moved or deleted.
           </p>
           <div className="space-y-4">
-            <Button asChild size="lg" className="w-full">
-              <Link to="/">Return to Home</Link>
+            <Button asChild size="lg" className="w-full flex items-center justify-center gap-2">
+              <Link to="/">
+                <Home className="h-5 w-5" />
+                <span>Return to Home</span>
+              </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="w-full">
-              <Link to="/invoice">Create an Invoice</Link>
+            <Button asChild variant="outline" size="lg" className="w-full flex items-center justify-center gap-2">
+              <Link to="/invoice">
+                <FileText className="h-5 w-5" />
+                <span>Create an Invoice</span>
+              </Link>
             </Button>
           </div>
         </div>
