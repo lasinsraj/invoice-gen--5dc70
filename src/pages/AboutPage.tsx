@@ -16,7 +16,7 @@ const AboutPage = () => {
     "url": "https://lasitharajapaksha.netlify.app/",
     "jobTitle": "Software Developer",
     "description": "Professional software developer specializing in web applications and invoice generator tools",
-    "image": "https://lasitharajapaksha.netlify.app/profile.jpg",
+    "image": "https://github.com/lasinsraj/lasitharajapaksha-host/blob/main/lasitha_rajapaksha.jpg",
     "sameAs": [
       "https://lasitharajapaksha.netlify.app/",
       "https://linkedin.com/in/lasitha-rajapaksha",
