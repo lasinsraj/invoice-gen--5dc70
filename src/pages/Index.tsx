@@ -18,17 +18,17 @@ const Index = () => {
         {/* Hero Section */}
         <Hero />
 
-        {/* Ad Banner */}
+        {/* Ad Banner 1 */}
         <div className="container mx-auto py-4">
-          <AdBanner width="100%" height="90px" />
+          <AdBanner width="100%" height="90px" adSlot={1} />
         </div>
         
         {/* Features Section */}
         <Features />
         
-        {/* Ad Banner */}
+        {/* Ad Banner 2 */}
         <div className="container mx-auto py-4">
-          <AdBanner width="100%" height="250px" />
+          <AdBanner width="100%" height="250px" adSlot={2} />
         </div>
         
         {/* How It Works */}
@@ -40,9 +40,9 @@ const Index = () => {
         {/* CTA Section */}
         <CallToAction />
         
-        {/* Ad Banner */}
+        {/* Ad Banner 3 */}
         <div className="container mx-auto py-8">
-          <AdBanner width="100%" height="90px" />
+          <AdBanner width="100%" height="90px" adSlot={3} />
         </div>
       </main>
       

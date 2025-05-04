@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -57,7 +58,7 @@ const InvoiceBuilder = () => {
         
         {/* Top Ad Banner */}
         <div className="mb-6">
-          <AdBanner width="100%" height="90px" />
+          <AdBanner width="100%" height="90px" adSlot={1} />
         </div>
         
         {/* Tabs */}
@@ -78,7 +79,7 @@ const InvoiceBuilder = () => {
             
             {/* Side Ad Banner */}
             <div className="my-6">
-              <AdBanner width="100%" height="600px" />
+              <AdBanner width="100%" height="600px" adSlot={2} />
             </div>
           </TabsContent>
           
@@ -99,7 +100,7 @@ const InvoiceBuilder = () => {
             
             {/* Bottom Ad Banner */}
             <div className="my-6 no-print">
-              <AdBanner width="100%" height="250px" />
+              <AdBanner width="100%" height="250px" adSlot={3} />
             </div>
           </TabsContent>
         </Tabs>
