@@ -29,7 +29,7 @@ const AboutPage = () => {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Invoice Generator",
-    "url": "https://invoicegenerator.com",
+    "url": "https://invoicegeneratorr.netlify.app/",
     "description": "Free professional invoice generator for small businesses and freelancers",
     "founder": {
       "@type": "Person",
