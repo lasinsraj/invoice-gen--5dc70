@@ -12,7 +12,8 @@ import InvoicePreview from '@/components/InvoicePreview';
 import AdBanner from '@/components/AdBanner';
 import { InvoiceData, defaultInvoice } from '@/types/invoice';
 import { toast } from 'sonner';
-import { HourglassIcon } from 'lucide-react';
+import { HourglassIcon, DownloadIcon } from 'lucide-react';
+import { generatePDF } from '@/utils/invoice-utils';
 
 const InvoiceBuilder: React.FC = () => {
   const [invoice, setInvoice] = useState<InvoiceData>(defaultInvoice);
@@ -51,18 +52,14 @@ const InvoiceBuilder: React.FC = () => {
       setIsDownloading(false);
       setCountdown(null);
       
-      // Change to preview tab first
-      setActiveTab('preview');
+      // Generate and download PDF instead of printing
+      generatePDF(invoice);
       
-      // Set a small timeout to ensure the UI updates before printing
-      setTimeout(() => {
-        window.print();
-        toast.success('Invoice downloaded successfully!', {
-          description: 'Your invoice has been downloaded as PDF.',
-        });
-      }, 100);
+      toast.success('Invoice downloaded successfully!', {
+        description: 'Your invoice has been downloaded as PDF.',
+      });
     }
-  }, [countdown]);
+  }, [countdown, invoice]);
   
   // Download as PDF with countdown
   const handleDownload = () => {
@@ -107,7 +104,10 @@ const InvoiceBuilder: React.FC = () => {
                     Downloading in {countdown}s
                   </>
                 ) : (
-                  'Download PDF'
+                  <>
+                    <DownloadIcon className="mr-2 h-4 w-4" />
+                    Download PDF
+                  </>
                 )}
               </Button>
             </div>
