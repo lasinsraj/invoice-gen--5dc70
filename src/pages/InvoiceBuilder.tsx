@@ -1,5 +1,6 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
@@ -15,6 +16,11 @@ const InvoiceBuilder = () => {
   const [activeTab, setActiveTab] = useState('edit');
   const [invoice, setInvoice] = useState<InvoiceData>(defaultInvoice);
   const { toast } = useToast();
+
+  useEffect(() => {
+    // Set document title for SEO
+    document.title = "Create Free Invoice Online | Professional Invoice Generator";
+  }, []);
 
   const handleInvoiceUpdate = (updatedInvoice: InvoiceData) => {
     setInvoice(updatedInvoice);
@@ -47,67 +53,95 @@ const InvoiceBuilder = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
-      
-      <main className="flex-grow container mx-auto px-4 py-8">
-        <div className="mb-6">
-          <h1 className="text-3xl font-bold text-invoice-primary mb-2">Invoice Generator</h1>
-          <p className="text-gray-600">Create professional invoices in seconds. Fill in the form and download your PDF.</p>
-        </div>
+    <>
+      <Helmet>
+        <title>Create Free Invoice Online | Professional Invoice Generator</title>
+        <meta name="description" content="Create and download professional invoices for free. Our online invoice generator lets you make custom invoices in seconds with no signup required." />
+        <meta name="keywords" content="invoice maker, free invoice maker, create invoice online, create invoice free, invoice generator tool" />
+        <link rel="canonical" href="https://invoicegenerator.com/invoice" />
         
-        {/* Top Ad Banner */}
-        <div className="mb-6">
-          <AdBanner width="100%" height="90px" adSlot={1} />
-        </div>
+        {/* Structured data for rich results */}
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "WebApplication",
+              "name": "Free Invoice Generator Tool",
+              "url": "https://invoicegenerator.com/invoice",
+              "description": "Create and download professional invoices for free. Our online invoice generator lets you make custom invoices in seconds.",
+              "applicationCategory": "BusinessApplication",
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+              }
+            }
+          `}
+        </script>
+      </Helmet>
+    
+      <div className="min-h-screen flex flex-col">
+        <Header />
         
-        {/* Tabs */}
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-6">
-          <TabsList className="w-full max-w-md grid grid-cols-2">
-            <TabsTrigger value="edit">Edit Invoice</TabsTrigger>
-            <TabsTrigger value="preview">Preview Invoice</TabsTrigger>
-          </TabsList>
+        <main className="flex-grow container mx-auto px-4 py-8">
+          <div className="mb-6">
+            <h1 className="text-3xl font-bold text-invoice-primary mb-2">Invoice Generator Tool</h1>
+            <p className="text-gray-600">Create professional invoices in seconds. Fill in the form and download your PDF.</p>
+          </div>
           
-          <TabsContent value="edit" className="mt-6">
-            <div className="flex justify-end mb-4">
-              <Button onClick={handlePreview} className="ml-2">
-                Preview Invoice
-              </Button>
-            </div>
-            
-            <InvoiceForm onInvoiceUpdate={handleInvoiceUpdate} />
-            
-            {/* Side Ad Banner */}
-            <div className="my-6">
-              <AdBanner width="100%" height="600px" adSlot={2} />
-            </div>
-          </TabsContent>
+          {/* Top Ad Banner */}
+          <div className="mb-6">
+            <AdBanner width="100%" height="90px" adSlot={1} />
+          </div>
           
-          <TabsContent value="preview" className="mt-6">
-            <div className="flex justify-end mb-4 space-x-2 no-print">
-              <Button variant="outline" onClick={() => setActiveTab('edit')}>
-                Back to Edit
-              </Button>
-              <Button onClick={handlePrint}>
-                Print
-              </Button>
-              <Button onClick={handleDownloadPDF}>
-                Download PDF
-              </Button>
-            </div>
+          {/* Tabs */}
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-6">
+            <TabsList className="w-full max-w-md grid grid-cols-2">
+              <TabsTrigger value="edit">Edit Invoice</TabsTrigger>
+              <TabsTrigger value="preview">Preview Invoice</TabsTrigger>
+            </TabsList>
             
-            <InvoicePreview invoice={invoice} />
+            <TabsContent value="edit" className="mt-6">
+              <div className="flex justify-end mb-4">
+                <Button onClick={handlePreview} className="ml-2">
+                  Preview Invoice
+                </Button>
+              </div>
+              
+              <InvoiceForm onInvoiceUpdate={handleInvoiceUpdate} />
+              
+              {/* Side Ad Banner */}
+              <div className="my-6">
+                <AdBanner width="100%" height="600px" adSlot={2} />
+              </div>
+            </TabsContent>
             
-            {/* Bottom Ad Banner */}
-            <div className="my-6 no-print">
-              <AdBanner width="100%" height="250px" adSlot={3} />
-            </div>
-          </TabsContent>
-        </Tabs>
-      </main>
-      
-      <Footer />
-    </div>
+            <TabsContent value="preview" className="mt-6">
+              <div className="flex justify-end mb-4 space-x-2 no-print">
+                <Button variant="outline" onClick={() => setActiveTab('edit')}>
+                  Back to Edit
+                </Button>
+                <Button onClick={handlePrint}>
+                  Print
+                </Button>
+                <Button onClick={handleDownloadPDF}>
+                  Download PDF
+                </Button>
+              </div>
+              
+              <InvoicePreview invoice={invoice} />
+              
+              {/* Bottom Ad Banner */}
+              <div className="my-6 no-print">
+                <AdBanner width="100%" height="250px" adSlot={3} />
+              </div>
+            </TabsContent>
+          </Tabs>
+        </main>
+        
+        <Footer />
+      </div>
+    </>
   );
 };
 

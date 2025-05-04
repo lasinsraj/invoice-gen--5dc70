@@ -1,14 +1,18 @@
-User-agent: Googlebot
-Allow: /
 
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
+# Allow all crawlers
 User-agent: *
 Allow: /
+
+# Sitemap
+Sitemap: https://invoicegenerator.com/sitemap.xml
+
+# Specific directives for Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# Specific directives for Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
