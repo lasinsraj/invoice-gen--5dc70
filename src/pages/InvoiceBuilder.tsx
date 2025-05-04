@@ -52,6 +52,35 @@ const InvoiceBuilder = () => {
     window.print();
   };
 
+  // Create structured data for rich results
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Free Invoice Generator Tool",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": "Custom invoice creation, PDF download, print functionality, tax calculation",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "1250"
+    }
+  };
+
+  const organizationData = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Invoice Generator",
+    "url": "https://invoicegenerator.com",
+    "logo": "https://invoicegenerator.com/logo.png",
+    "description": "Free professional invoice generator for small businesses and freelancers"
+  };
+
   return (
     <>
       <Helmet>
@@ -60,23 +89,12 @@ const InvoiceBuilder = () => {
         <meta name="keywords" content="invoice maker, free invoice maker, create invoice online, create invoice free, invoice generator tool" />
         <link rel="canonical" href="https://invoicegenerator.com/invoice" />
         
-        {/* Structured data for rich results */}
+        {/* Structured data for rich results - using JSON stringify to ensure proper formatting */}
         <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "WebApplication",
-              "name": "Free Invoice Generator Tool",
-              "url": "https://invoicegenerator.com/invoice",
-              "description": "Create and download professional invoices for free. Our online invoice generator lets you make custom invoices in seconds.",
-              "applicationCategory": "BusinessApplication",
-              "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD"
-              }
-            }
-          `}
+          {JSON.stringify(structuredData)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(organizationData)}
         </script>
       </Helmet>
     

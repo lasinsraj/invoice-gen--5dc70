@@ -16,6 +16,25 @@ const Index = () => {
     document.title = "Free Invoice Generator | Create Professional Invoices Online";
   }, []);
 
+  // Create structured data for rich results
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Free Invoice Generator",
+    "url": "https://invoicegenerator.com",
+    "description": "Create professional invoices online with our free invoice generator tool. No sign-up required.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "screenshot": "https://invoicegenerator.com/og-image.png",
+    "featureList": "Free invoice generation, PDF download, custom templates, no registration required",
+    "softwareVersion": "1.0"
+  };
+
   return (
     <>
       <Helmet>
@@ -24,23 +43,9 @@ const Index = () => {
         <meta name="keywords" content="invoice generator, free invoice generator, invoice generator tool, free invoice maker, invoice maker, create invoice online, create invoice free" />
         <link rel="canonical" href="https://invoicegenerator.com/" />
         
-        {/* Structured data for rich results */}
+        {/* Structured data for rich results - using JSON stringify to ensure proper formatting */}
         <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "WebApplication",
-              "name": "Free Invoice Generator",
-              "url": "https://invoicegenerator.com",
-              "description": "Create professional invoices online with our free invoice generator tool. No sign-up required.",
-              "applicationCategory": "BusinessApplication",
-              "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD"
-              }
-            }
-          `}
+          {JSON.stringify(structuredData)}
         </script>
       </Helmet>
       
