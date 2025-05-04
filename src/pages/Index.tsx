@@ -32,7 +32,33 @@ const Index = () => {
     },
     "screenshot": "https://invoicegenerator.com/og-image.png",
     "featureList": "Free invoice generation, PDF download, custom templates, no registration required",
-    "softwareVersion": "1.0"
+    "softwareVersion": "1.0",
+    "creator": {
+      "@type": "Person",
+      "name": "Lasitha Rajapaksha",
+      "url": "https://lasitharajapaksha.netlify.app/",
+      "jobTitle": "Software Developer",
+      "description": "Professional software developer specializing in web applications and invoice generator tools"
+    }
+  };
+
+  const organizationData = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Invoice Generator",
+    "url": "https://invoicegenerator.com",
+    "logo": "https://invoicegenerator.com/logo.png",
+    "description": "Free professional invoice generator for small businesses and freelancers",
+    "founder": {
+      "@type": "Person",
+      "name": "Lasitha Rajapaksha",
+      "url": "https://lasitharajapaksha.netlify.app/",
+      "sameAs": [
+        "https://lasitharajapaksha.netlify.app/",
+        "https://linkedin.com/in/lasitha-rajapaksha",
+        "https://github.com/lasitharajapaksha"
+      ]
+    }
   };
 
   return (
@@ -46,6 +72,9 @@ const Index = () => {
         {/* Structured data for rich results - using JSON stringify to ensure proper formatting */}
         <script type="application/ld+json">
           {JSON.stringify(structuredData)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(organizationData)}
         </script>
       </Helmet>
       

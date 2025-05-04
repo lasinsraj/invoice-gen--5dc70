@@ -69,6 +69,13 @@ const InvoiceBuilder = () => {
       "@type": "AggregateRating",
       "ratingValue": "4.8",
       "ratingCount": "1250"
+    },
+    "creator": {
+      "@type": "Person",
+      "name": "Lasitha Rajapaksha",
+      "url": "https://lasitharajapaksha.netlify.app/",
+      "jobTitle": "Software Developer",
+      "description": "Professional software developer specializing in web applications and invoice generator tools"
     }
   };
 
@@ -78,7 +85,17 @@ const InvoiceBuilder = () => {
     "name": "Invoice Generator",
     "url": "https://invoicegenerator.com",
     "logo": "https://invoicegenerator.com/logo.png",
-    "description": "Free professional invoice generator for small businesses and freelancers"
+    "description": "Free professional invoice generator for small businesses and freelancers",
+    "founder": {
+      "@type": "Person",
+      "name": "Lasitha Rajapaksha",
+      "url": "https://lasitharajapaksha.netlify.app/",
+      "sameAs": [
+        "https://lasitharajapaksha.netlify.app/",
+        "https://linkedin.com/in/lasitha-rajapaksha",
+        "https://github.com/lasitharajapaksha"
+      ]
+    }
   };
 
   return (

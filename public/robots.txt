@@ -18,3 +18,8 @@ Crawl-delay: 1
 
 # Allow access to structured data
 Allow: /*.json$
+Allow: /*.jsonld$
+
+# Allow access to creator info
+Allow: /about
+
