@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -6,7 +5,6 @@ import Footer from '@/components/Footer';
 import AdBanner from '@/components/AdBanner';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-
 const AboutPage = () => {
   // Create structured data for the founder/creator
   const founderData = {
@@ -17,14 +15,9 @@ const AboutPage = () => {
     "jobTitle": "Software Developer",
     "description": "Professional software developer specializing in web applications and invoice generator tools",
     "image": "https://github.com/lasinsraj/lasitharajapaksha-host/blob/main/lasitha_rajapaksha.jpg",
-    "sameAs": [
-      "https://lasitharajapaksha.netlify.app/",
-      "https://linkedin.com/in/lasitha-rajapaksha",
-      "https://github.com/lasitharajapaksha"
-    ],
+    "sameAs": ["https://lasitharajapaksha.netlify.app/", "https://linkedin.com/in/lasitha-rajapaksha", "https://github.com/lasitharajapaksha"],
     "knowsAbout": ["Web Development", "Invoice Generation", "React", "JavaScript", "TypeScript", "UI/UX Design"]
   };
-
   const organizationData = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -35,16 +28,10 @@ const AboutPage = () => {
       "@type": "Person",
       "name": "Lasitha Rajapaksha",
       "url": "https://lasitharajapaksha.netlify.app/",
-      "sameAs": [
-        "https://lasitharajapaksha.netlify.app/",
-        "https://linkedin.com/in/lasitha-rajapaksha",
-        "https://github.com/lasitharajapaksha"
-      ]
+      "sameAs": ["https://lasitharajapaksha.netlify.app/", "https://linkedin.com/in/lasitha-rajapaksha", "https://github.com/lasitharajapaksha"]
     }
   };
-
-  return (
-    <div className="min-h-screen flex flex-col">
+  return <div className="min-h-screen flex flex-col">
       <Helmet>
         <title>About Us | Free Invoice Generator</title>
         <meta name="description" content="Learn about the team behind our free invoice generator tool. Founded by Lasitha Rajapaksha, we're committed to making invoicing simple for everyone." />
@@ -97,41 +84,21 @@ const AboutPage = () => {
                 <div className="flex flex-col md:flex-row items-start gap-8">
                   <div className="w-full md:w-1/3">
                     <div className="rounded-lg bg-gray-100 aspect-square flex items-center justify-center text-gray-500 overflow-hidden">
-                      <img 
-                        src="https://lasitharajapaksha.netlify.app/profile.jpg" 
-                        alt="Lasitha Rajapaksha" 
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          e.currentTarget.src = "https://via.placeholder.com/300?text=Lasitha+Rajapaksha";
-                        }}
-                      />
+                      <img alt="Lasitha Rajapaksha" className="w-full h-full object-cover" onError={e => {
+                      e.currentTarget.src = "https://via.placeholder.com/300?text=Lasitha+Rajapaksha";
+                    }} src="/lovable-uploads/b1f2176e-e14d-424a-8175-028f978f96b0.jpg" />
                     </div>
                     
                     <div className="mt-4 space-y-2">
-                      <a 
-                        href="https://lasitharajapaksha.netlify.app/" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="block text-invoice-primary hover:underline font-medium"
-                      >
+                      <a href="https://lasitharajapaksha.netlify.app/" target="_blank" rel="noopener noreferrer" className="block text-invoice-primary hover:underline font-medium">
                         Portfolio Website
                       </a>
                       
-                      <a 
-                        href="https://linkedin.com/in/lasitha-rajapaksha" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="block text-invoice-primary hover:underline font-medium" 
-                      >
+                      <a href="https://linkedin.com/in/lasitha-rajapaksha" target="_blank" rel="noopener noreferrer" className="block text-invoice-primary hover:underline font-medium">
                         LinkedIn Profile
                       </a>
                       
-                      <a 
-                        href="https://github.com/lasitharajapaksha" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="block text-invoice-primary hover:underline font-medium"
-                      >
+                      <a href="https://github.com/lasitharajapaksha" target="_blank" rel="noopener noreferrer" className="block text-invoice-primary hover:underline font-medium">
                         GitHub Profile
                       </a>
                     </div>
@@ -190,8 +157,6 @@ const AboutPage = () => {
       </main>
       
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default AboutPage;
