@@ -8,7 +8,7 @@ interface AdBannerProps {
 }
 
 const AdBanner: React.FC<AdBannerProps> = ({ width, height, adSlot = 1 }) => {
-  // Change the ref type to match the ins element
+  // Use HTMLInsElement which is the correct type for <ins> elements
   const adContainerRef = useRef<HTMLElement>(null);
   
   useEffect(() => {
@@ -54,7 +54,7 @@ const AdBanner: React.FC<AdBannerProps> = ({ width, height, adSlot = 1 }) => {
         data-ad-slot={getAdSlot()}
         data-ad-format="auto"
         data-full-width-responsive="true"
-        ref={adContainerRef as React.RefObject<HTMLElement>}
+        ref={adContainerRef as React.LegacyRef<HTMLElement>}
       />
     </div>
   );
