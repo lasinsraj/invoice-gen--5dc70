@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -15,6 +16,7 @@ import { toast } from 'sonner';
 const InvoiceBuilder: React.FC = () => {
   const [invoice, setInvoice] = useState<InvoiceData>(defaultInvoice);
   const [activeTab, setActiveTab] = useState<string>('edit');
+  const [selectedTemplate, setSelectedTemplate] = useState<'classic' | 'modern' | 'minimal' | 'professional'>('classic');
   
   // Function to handle invoice updates from the form
   const handleInvoiceUpdate = (updatedInvoice: InvoiceData) => {
@@ -86,14 +88,31 @@ const InvoiceBuilder: React.FC = () => {
             </TabsContent>
             
             <TabsContent value="preview">
-              <InvoicePreview invoice={invoice} />
+              <div className="mb-6 flex justify-between items-center">
+                <h2 className="text-xl font-semibold">Invoice Preview</h2>
+                <Select 
+                  value={selectedTemplate} 
+                  onValueChange={(value) => setSelectedTemplate(value as any)}
+                >
+                  <SelectTrigger className="w-[200px]">
+                    <SelectValue placeholder="Select a template" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="classic">Classic Template</SelectItem>
+                    <SelectItem value="modern">Modern Template</SelectItem>
+                    <SelectItem value="minimal">Minimal Template</SelectItem>
+                    <SelectItem value="professional">Professional Template</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <InvoicePreview invoice={invoice} template={selectedTemplate} />
             </TabsContent>
           </Tabs>
         </div>
         
         {/* This will only show when printing */}
         <div className="hidden print:block">
-          <InvoicePreview invoice={invoice} />
+          <InvoicePreview invoice={invoice} template={selectedTemplate} />
         </div>
       </main>
       
