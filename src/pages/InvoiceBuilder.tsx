@@ -12,11 +12,14 @@ import InvoicePreview from '@/components/InvoicePreview';
 import AdBanner from '@/components/AdBanner';
 import { InvoiceData, defaultInvoice } from '@/types/invoice';
 import { toast } from 'sonner';
+import { HourglassIcon } from 'lucide-react';
 
 const InvoiceBuilder: React.FC = () => {
   const [invoice, setInvoice] = useState<InvoiceData>(defaultInvoice);
   const [activeTab, setActiveTab] = useState<string>('edit');
   const [selectedTemplate, setSelectedTemplate] = useState<'classic' | 'modern' | 'minimal' | 'professional'>('classic');
+  const [countdown, setCountdown] = useState<number | null>(null);
+  const [isDownloading, setIsDownloading] = useState<boolean>(false);
   
   // Function to handle invoice updates from the form
   const handleInvoiceUpdate = (updatedInvoice: InvoiceData) => {
@@ -34,15 +37,43 @@ const InvoiceBuilder: React.FC = () => {
     }, 100);
   };
   
-  // Download as PDF
+  // Countdown effect
+  useEffect(() => {
+    if (countdown === null) return;
+    
+    if (countdown > 0) {
+      const timer = setTimeout(() => {
+        setCountdown(countdown - 1);
+      }, 1000);
+      return () => clearTimeout(timer);
+    } else {
+      // When countdown reaches 0, trigger download
+      setIsDownloading(false);
+      setCountdown(null);
+      
+      // Change to preview tab first
+      setActiveTab('preview');
+      
+      // Set a small timeout to ensure the UI updates before printing
+      setTimeout(() => {
+        window.print();
+        toast.success('Invoice downloaded successfully!', {
+          description: 'Your invoice has been downloaded as PDF.',
+        });
+      }, 100);
+    }
+  }, [countdown]);
+  
+  // Download as PDF with countdown
   const handleDownload = () => {
-    toast.success('Invoice ready for download', {
-      description: 'Your invoice has been prepared for download.',
+    if (countdown !== null) return; // Prevent multiple clicks during countdown
+    
+    toast.info('Preparing your invoice...', {
+      description: 'Download will start in 5 seconds.',
     });
     
-    // In a real implementation, this would generate a PDF
-    // For now, we'll just trigger the print dialog which can be saved as PDF
-    handlePrint();
+    setIsDownloading(true);
+    setCountdown(5);
   };
   
   return (
@@ -65,7 +96,20 @@ const InvoiceBuilder: React.FC = () => {
               <Button onClick={handlePrint} variant="outline">
                 Print
               </Button>
-              <Button onClick={handleDownload}>Download PDF</Button>
+              <Button 
+                onClick={handleDownload} 
+                disabled={isDownloading}
+                className="relative"
+              >
+                {isDownloading ? (
+                  <>
+                    <HourglassIcon className="mr-2 h-4 w-4 animate-pulse" />
+                    Downloading in {countdown}s
+                  </>
+                ) : (
+                  'Download PDF'
+                )}
+              </Button>
             </div>
           </div>
           
